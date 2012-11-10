@@ -28,7 +28,10 @@ def find_movies():
 	for movie in os.listdir():
 		os.chdir(movie_dir)
 		old_movies[movie] = set()
-		os.chdir(movie)
+		try:
+			os.chdir(movie)
+		except NotADirectoryError:
+			pass
 		for video in os.listdir():
 			video = video.split(".")[0]
 			old_movies[movie].add(video)
